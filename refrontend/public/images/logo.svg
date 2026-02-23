@@ -1,0 +1,63 @@
+<svg width="1000" height="350" viewBox="0 0 1000 350" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Icon Frame -->
+  <rect x="40" y="40" width="220" height="270"
+        fill="none"
+        stroke="white"
+        stroke-width="3"/>
+
+  <!-- Head -->
+  <circle cx="150" cy="120" r="45" fill="white"/>
+
+  <!-- Upper Arrow -->
+  <polygon points="
+    150,165
+    95,205
+    120,205
+    150,180
+    180,205
+    205,205
+  " fill="white"/>
+
+  <!-- Middle Arrow -->
+  <polygon points="
+    150,185
+    95,225
+    120,225
+    150,200
+    180,225
+    205,225
+  " fill="white"/>
+
+  <!-- Lower Stem -->
+  <rect x="135" y="205" width="30" height="80" fill="white"/>
+
+  <!-- Text UP -->
+  <text x="320" y="140"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="90"
+        font-weight="800"
+        fill="white">
+    UP
+  </text>
+
+  <!-- Text LIFT -->
+  <text x="320" y="220"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="90"
+        font-weight="800"
+        fill="white">
+    LIFT
+  </text>
+
+  <!-- Text PLACEMENTS -->
+  <text x="320" y="290"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="70"
+        font-weight="400"
+        letter-spacing="3"
+        fill="white">
+    PLACEMENTS
+  </text>
+
+</svg>

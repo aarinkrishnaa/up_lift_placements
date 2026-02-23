@@ -1,0 +1,21 @@
+document.addEventListener("DOMContentLoaded", function() {
+    var advanceMenu = document.querySelector(".advanceMenu");
+    var siteOverlay = document.querySelector(".site-overlay");
+    var sitePanel = document.querySelector(".side-panel");
+    var closeBtn = document.querySelector(".closeIcon");
+  
+    function addClass() {
+      siteOverlay.classList.add("act");
+      sitePanel.classList.add("act");
+    }
+  
+    function removeClass() {
+      siteOverlay.classList.remove("act");
+      sitePanel.classList.remove("act");
+    }
+  
+    advanceMenu.addEventListener("click", addClass);
+    siteOverlay.addEventListener("click", removeClass);
+    closeBtn.addEventListener("click", removeClass);
+  });
+  

@@ -1,0 +1,6 @@
+@rebackend_HostAddress = http://localhost:5282
+
+GET {{rebackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,142 @@
+/* UP LIFT PLACEMENTS - Custom Color Theme Override */
+/* Primary Orange: #FD6F2F | Light Peach: #FFEAD1 | Soft Green: #DCE4B8 | Dark Forest: #515739 | Deep Green: #2F3E2E | Sand Beige: #E6D5C3 */
+
+/* Replace all #003487 (NetBounce Blue) with #FD6F2F (Primary Orange) */
+[data-settings*="background_background"]:not(.e-con-inner),
+.headerOuter,
+.topHeader,
+.elementor-element-70cf56d1,
+.elementor-element-70d96280,
+.elementor-element-3fad126,
+.blueSection {
+    background-color: #FD6F2F !important;
+    background: #FD6F2F !important;
+}
+
+/* Replace #1a4993 (Secondary Blue) with #515739 (Dark Forest) */
+.elementor-element-b0982b7,
+footer,
+.footer {
+    background-color: #515739 !important;
+    background: #515739 !important;
+}
+
+/* Headings and text colors */
+h1, h2, h3, h4, h5, h6,
+.elementor-heading-title {
+    color: #2F3E2E !important;
+}
+
+/* Buttons */
+.elementor-button,
+.rs-layer.rev-btn,
+a.elementor-button {
+    background-color: #FD6F2F !important;
+    color: #fff !important;
+}
+
+.elementor-button:hover,
+.rs-layer.rev-btn:hover {
+    background-color: #515739 !important;
+}
+
+/* Links */
+a {
+    color: #FD6F2F !important;
+}
+
+a:hover {
+    color: #515739 !important;
+}
+
+/* Service boxes and cards */
+.serviceBox,
+.whychooseus {
+    border-color: #FD6F2F !important;
+}
+
+.serviceBox .elementor-icon,
+.whychooseus .elementor-icon {
+    color: #FD6F2F !important;
+}
+
+/* Slider background */
+.rev-slidebg[data-bg*="#003487"] {
+    background-color: #FD6F2F !important;
+}
+
+/* Navigation menu */
+.ekit-menu-nav-link:hover,
+.ekit-menu-nav-link.active {
+    color: #FD6F2F !important;
+}
+
+/* Social icons */
+.elementor-social-icon {
+    background-color: #FD6F2F !important;
+}
+
+.elementor-social-icon:hover {
+    background-color: #515739 !important;
+}
+
+/* Icon colors */
+.elementor-icon-box-icon {
+    color: #FD6F2F !important;
+}
+
+/* Accent backgrounds */
+.elementor-element[data-settings*="classic"] {
+    background-color: #FFEAD1 !important;
+}
+
+/* Text on colored backgrounds */
+.headerOuter *,
+.blueSection *,
+.elementor-element-70d96280 * {
+    color: #fff !important;
+}
+
+/* Footer text */
+.elementor-element-b0982b7 *,
+footer *,
+.footer * {
+    color: #fff !important;
+}
+
+/* Breadcrumb */
+.breachcome .elementor-icon-list-text {
+    color: #2F3E2E !important;
+}
+
+/* Form elements */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    border-color: #DCE4B8 !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #FD6F2F !important;
+    outline-color: #FD6F2F !important;
+}
+
+/* Submit buttons */
+input[type="submit"],
+button[type="submit"],
+.mf-btn {
+    background-color: #FD6F2F !important;
+    color: #fff !important;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover,
+.mf-btn:hover {
+    background-color: #515739 !important;
+}
