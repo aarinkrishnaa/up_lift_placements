@@ -33,13 +33,21 @@ builder.Services.AddScoped<IRecruitmentService, RecruitmentService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
-        policy.WithOrigins("http://localhost:5173", "http://localhost:5174")
+        policy.WithOrigins(
+            "http://localhost:5173", 
+            "http://localhost:5174",
+            "https://upliftplacements.netlify.app"
+        )
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials());
 });
 
 var app = builder.Build();
+
+// Get port from environment variable (Railway sets PORT)
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5282";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
 if (app.Environment.IsDevelopment())
 {
