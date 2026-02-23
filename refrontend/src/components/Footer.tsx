@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react'
+import { Linkedin, Instagram } from 'lucide-react'
 
 const Footer = () => {
   return (
@@ -10,13 +10,14 @@ const Footer = () => {
           <div>
             <img src="/images/logo.svg" alt="UP LIFT PLACEMENTS" className="h-12 mb-4" />
             <p className="text-gray-300 mb-4 text-sm leading-relaxed">
-              For the past two-plus years, NetBounce Placement's LLC is a tech employment firm connecting candidates and clients.
+              For the past two-plus years, UP LIFT PLACEMENTS LLC is a tech employment firm connecting candidates and clients.
             </p>
-            <div className="flex gap-4">
-              <a href="https://www.linkedin.com/company/netbounce-placements" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
+            <p className="text-gray-400 text-xs mt-6">&copy; 2021 UP LIFT PLACEMENTS LLC. All rights reserved.</p>
+            <div className="flex gap-4 mt-4">
+              <a href="https://www.linkedin.com/company/UP LIFT PLACEMENTS-placements" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
                 <Linkedin size={20} />
               </a>
-              <a href="https://www.instagram.com/netbounce.placement" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
+              <a href="https://www.instagram.com/UP LIFT PLACEMENTS.placement" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
                 <Instagram size={20} />
               </a>
             </div>
@@ -54,10 +55,6 @@ const Footer = () => {
           </div>
 
 
-        </div>
-
-        <div className="border-t border-gray-700 pt-4">
-          <p className="text-gray-400 text-xs text-center">&copy; {new Date().getFullYear()} NetBounce Placement's LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>

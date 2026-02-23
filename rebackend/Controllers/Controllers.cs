@@ -17,11 +17,12 @@ public class ContactController : ControllerBase
     {
         var contact = new Contact
         {
-            FirstName = dto.FirstName,
-            LastName = dto.LastName,
+            Name = dto.Name,
             Email = dto.Email,
-            PhoneNumber = dto.PhoneNumber,
-            Comments = dto.Comments
+            Phone = dto.Phone,
+            Subject = dto.Subject,
+            Message = dto.Message,
+            Status = "New"
         };
         return Ok(await _service.SubmitAsync(contact));
     }

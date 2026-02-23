@@ -15,16 +15,16 @@ const Header = () => {
       <div className="bg-[#2F3E2E] text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4">
-            <a href="https://www.linkedin.com/company/netbounce-placements" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
+            <a href="https://www.linkedin.com/company/UP LIFT PLACEMENTS-placements" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
               <Linkedin size={18} />
             </a>
-            <a href="https://www.instagram.com/netbounce.placement" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
+            <a href="https://www.instagram.com/UP LIFT PLACEMENTS.placement" target="_blank" rel="noopener noreferrer" className="hover:text-[#FD6F2F] transition">
               <Instagram size={18} />
             </a>
-            <a href="mailto:service@netbounceplacement.com" className="hover:text-[#FD6F2F] transition">
+            <a href="mailto:service@upliftplacements.com" className="hover:text-[#FD6F2F] transition">
               <Mail size={18} />
             </a>
-            <a href="tel:+18052226708" className="hover:text-[#FD6F2F] transition">
+            <a href="tel:+919664361260" className="hover:text-[#FD6F2F] transition">
               <Phone size={18} />
             </a>
           </div>
@@ -189,27 +189,33 @@ const Header = () => {
         <div className="space-y-6">
           <div>
             <p className="text-gray-700 text-sm leading-relaxed">
-              For the past two-plus years, NetBounce Placement's LLC is a tech employment firm connecting candidates and clients, facilitating access to job opportunities and the right talent.
+              For the past two-plus years, UP LIFT PLACEMENTS LLC is a tech employment firm connecting candidates and clients, facilitating access to job opportunities and the right talent.
             </p>
           </div>
 
           <div>
             <h2 className="text-xl font-bold text-[#2F3E2E] mb-3">Contacts</h2>
-            <h3 className="text-base font-semibold text-[#515739] mb-2">Us headquarters</h3>
+            <h3 className="text-base font-semibold text-[#515739] mb-2">India Office</h3>
             <p className="text-sm text-gray-600 mb-4">
-              2404, 1007 N Orange St. 4th Floor,<br />
-              Wilmington, DE, New Castle, US, 19801
+              Plot No. 56, Navrangpura Business Tower,<br />
+              Near Ahmedabad One Mall, Navrangpura,<br />
+              Ahmedabad – 380009, Gujarat, India
             </p>
-            <a href="mailto:service@netbounceplacement.com" className="text-[#FD6F2F] hover:underline text-sm">
-              service@netbounceplacement.com
+            <h3 className="text-base font-semibold text-[#515739] mb-2">US Office</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Suite 510, 350 Fifth Avenue,<br />
+              New York, NY 10118, United States
+            </p>
+            <a href="mailto:service@upliftplacements.com" className="text-[#FD6F2F] hover:underline text-sm">
+              service@upliftplacements.com
             </a>
           </div>
 
           <div className="flex gap-4">
-            <a href="https://www.linkedin.com/company/netbounce-placements" target="_blank" rel="noopener noreferrer" className="text-[#515739] hover:text-[#FD6F2F] transition">
+            <a href="https://www.linkedin.com/company/UP LIFT PLACEMENTS-placements" target="_blank" rel="noopener noreferrer" className="text-[#515739] hover:text-[#FD6F2F] transition">
               <Linkedin size={24} />
             </a>
-            <a href="https://www.instagram.com/netbounce.placement" target="_blank" rel="noopener noreferrer" className="text-[#515739] hover:text-[#FD6F2F] transition">
+            <a href="https://www.instagram.com/UP LIFT PLACEMENTS.placement" target="_blank" rel="noopener noreferrer" className="text-[#515739] hover:text-[#FD6F2F] transition">
               <Instagram size={24} />
             </a>
           </div>

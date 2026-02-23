@@ -11,13 +11,13 @@ const CareerGuidance = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gray-700 leading-relaxed mb-6">
-            NetBounce Placement serves as your trusted compass in the intricate world of careers, spanning a multitude of domains including STEM (Science, Technology, Engineering, and Mathematics), Green card holders, US citizens, and EAD holders. As your dedicated partner, we embark on an in-depth journey to meticulously evaluate each candidate through comprehensive interviews, ensuring a seamless alignment with your organization's ethos and goals. Our profound grasp of technical intricacies and industry trends positions us as not just a placement agency, but a confidant, coach, mentor, and agent for our candidates, fostering holistic career growth.
+            UP LIFT PLACEMENTS serves as your trusted compass in the intricate world of careers, spanning a multitude of domains including STEM (Science, Technology, Engineering, and Mathematics), Green card holders, US citizens, and EAD holders. As your dedicated partner, we embark on an in-depth journey to meticulously evaluate each candidate through comprehensive interviews, ensuring a seamless alignment with your organization's ethos and goals. Our profound grasp of technical intricacies and industry trends positions us as not just a placement agency, but a confidant, coach, mentor, and agent for our candidates, fostering holistic career growth.
           </p>
           <p className="text-gray-700 leading-relaxed mb-8">
             Our specialized STEM services are catalysts for transformative change in candidates' lives, cementing our reputation as an industry-leading STEM employment firm in the digital landscape.
           </p>
 
-          <h3 className="text-2xl font-bold text-[#2F3E2E] mb-6">NetBounce extends a comprehensive suite of services, encompassing:</h3>
+          <h3 className="text-2xl font-bold text-[#2F3E2E] mb-6">UP LIFT PLACEMENTS extends a comprehensive suite of services, encompassing:</h3>
           
           <div className="space-y-6">
             <div>
@@ -38,7 +38,7 @@ const CareerGuidance = () => {
             Our tailored approach resonates with clients and candidates alike, ensuring that the perfect match is forged between individual talents and organizational objectives. Beyond individual satisfaction, this methodology translates into tangible advantages such as enhanced flexibility, cost-effectiveness, and the ability to swiftly address workforce gaps with qualified professionals.
           </p>
           <p className="text-gray-700 leading-relaxed mt-4">
-            As NetBounce emerges as your guiding star, embark on a journey of comprehensive career guidance and successful placements, elevating both candidates and your organization.
+            As UP LIFT PLACEMENTS emerges as your guiding star, embark on a journey of comprehensive career guidance and successful placements, elevating both candidates and your organization.
           </p>
         </div>
       </section>

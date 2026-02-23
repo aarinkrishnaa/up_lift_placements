@@ -16,7 +16,7 @@ const Staffing = () => {
             <div>
               <h2 className="text-3xl font-bold text-[#2F3E2E] mb-6">IT Staffing Solutions</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
-                NetBounce Placement excels in IT recruitment and staffing services for finance, healthcare, and technology sectors. We offer versatile options: full-time, contract, and contract-to-hire positions, creating the perfect match for clients and candidates alike.
+                UP LIFT PLACEMENTS excels in IT recruitment and staffing services for finance, healthcare, and technology sectors. We offer versatile options: full-time, contract, and contract-to-hire positions, creating the perfect match for clients and candidates alike.
               </p>
               <ul className="space-y-4 text-gray-700 leading-relaxed">
                 <li className="flex items-start">
@@ -134,7 +134,7 @@ const Staffing = () => {
       {/* Benefits Section */}
       <section className="py-16 bg-gradient-to-br from-[#FFEAD1] to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-2xl font-bold text-[#2F3E2E] mb-8 text-center">Why Choose NetBounce for Staffing?</h3>
+          <h3 className="text-2xl font-bold text-[#2F3E2E] mb-8 text-center">Why Choose UP LIFT PLACEMENTS for Staffing?</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-lg text-center">
               <div className="text-4xl font-bold text-[#FD6F2F] mb-2">870+</div>

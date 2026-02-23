@@ -18,7 +18,7 @@ const InterviewSupport = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gray-700 leading-relaxed mb-6">
-            NetBounce Placement extends a crucial service to job seekers through our comprehensive interview support offerings. With a diverse range of resources including articles, webinars, videos, virtual coaching sessions, and interactive workshops, we equip job seekers with a robust toolkit to excel in interviews and elevate their chances of success.
+            UP LIFT PLACEMENTS extends a crucial service to job seekers through our comprehensive interview support offerings. With a diverse range of resources including articles, webinars, videos, virtual coaching sessions, and interactive workshops, we equip job seekers with a robust toolkit to excel in interviews and elevate their chances of success.
           </p>
           <p className="text-gray-700 leading-relaxed mb-6">
             Our commitment extends to personalized attention, offering one-on-one coaching and resume reviews. This tailored approach allows individuals to polish their application materials and enhance their interview prowess.

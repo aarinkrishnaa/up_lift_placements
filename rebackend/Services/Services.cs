@@ -8,13 +8,36 @@ namespace rebackend.Services;
 public class ContactService : IContactService
 {
     private readonly AppDbContext _db;
-    public ContactService(AppDbContext db) => _db = db;
+    private readonly IEmailService _emailService;
+    
+    public ContactService(AppDbContext db, IEmailService emailService)
+    {
+        _db = db;
+        _emailService = emailService;
+    }
 
     public async Task<Contact> SubmitAsync(Contact contact)
     {
         contact.Status = "New";
         _db.Contacts.Add(contact);
         await _db.SaveChangesAsync();
+        
+        // Send email notification
+        try
+        {
+            await _emailService.SendContactEmailAsync(
+                contact.Name,
+                contact.Email,
+                contact.Phone ?? "Not provided",
+                contact.Subject,
+                contact.Message
+            );
+        }
+        catch (Exception)
+        {
+            // Log error but don't fail the request
+        }
+        
         return contact;
     }
 
@@ -24,7 +47,13 @@ public class ContactService : IContactService
 public class ReferralService : IReferralService
 {
     private readonly AppDbContext _db;
-    public ReferralService(AppDbContext db) => _db = db;
+    private readonly IEmailService _emailService;
+    
+    public ReferralService(AppDbContext db, IEmailService emailService)
+    {
+        _db = db;
+        _emailService = emailService;
+    }
 
     public async Task<Referral> CreateAsync(Referral referral)
     {
@@ -32,6 +61,25 @@ public class ReferralService : IReferralService
         referral.Status = "Pending";
         _db.Referrals.Add(referral);
         await _db.SaveChangesAsync();
+        
+        // Send email notification
+        try
+        {
+            await _emailService.SendReferralEmailAsync(
+                referral.ReferrerName,
+                referral.ReferrerEmail,
+                referral.ReferrerPhone ?? "Not provided",
+                referral.RefereeName,
+                referral.RefereeEmail,
+                referral.RefereePhone ?? "Not provided",
+                "See database for details"
+            );
+        }
+        catch (Exception)
+        {
+            // Log error but don't fail the request
+        }
+        
         return referral;
     }
 
@@ -61,7 +109,13 @@ public class JobService : IJobService
 public class TrainingService : ITrainingService
 {
     private readonly AppDbContext _db;
-    public TrainingService(AppDbContext db) => _db = db;
+    private readonly IEmailService _emailService;
+    
+    public TrainingService(AppDbContext db, IEmailService emailService)
+    {
+        _db = db;
+        _emailService = emailService;
+    }
 
     public async Task<IEnumerable<TrainingProgram>> GetActiveProgramsAsync() => 
         await _db.TrainingPrograms.Where(t => t.IsActive).ToListAsync();
@@ -74,6 +128,25 @@ public class TrainingService : ITrainingService
         enrollment.EnrollmentDate = DateTime.UtcNow;
         _db.TrainingEnrollments.Add(enrollment);
         await _db.SaveChangesAsync();
+        
+        // Send email notification
+        try
+        {
+            var program = await _db.TrainingPrograms.FindAsync(enrollment.TrainingProgramId);
+            await _emailService.SendTrainingEnrollmentEmailAsync(
+                enrollment.StudentName,
+                enrollment.Email,
+                enrollment.Phone ?? "Not provided",
+                program?.Name ?? "Training Program",
+                "Not specified",
+                "See database for details"
+            );
+        }
+        catch (Exception)
+        {
+            // Log error but don't fail the request
+        }
+        
         return enrollment;
     }
 }

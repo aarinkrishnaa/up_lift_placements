@@ -1,4 +1,38 @@
+import { useState } from 'react'
+
 const Training = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', program: '', experience: '', message: '' })
+  const [status, setStatus] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('sending')
+    
+    try {
+      // Send email directly without database
+      const response = await fetch('http://localhost:5282/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${formData.name} - Training Enrollment`,
+          email: formData.email,
+          phone: formData.phone,
+          subject: `Training: ${formData.program}`,
+          message: `Program: ${formData.program}\nExperience: ${formData.experience}\n\n${formData.message}`
+        })
+      })
+      
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', phone: '', program: '', experience: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      setStatus('error')
+    }
+  }
+
   return (
     <div>
       {/* Hero Section */}
@@ -24,7 +58,7 @@ const Training = () => {
             <div className="order-1 md:order-2">
               <h2 className="text-3xl font-bold text-[#2F3E2E] mb-6">Professional IT Training Programs</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
-                NetBounce Placement offers comprehensive training programs designed to enhance your technical skills and prepare you for success in the competitive IT industry.
+                UP LIFT PLACEMENTS offers comprehensive training programs designed to enhance your technical skills and prepare you for success in the competitive IT industry.
               </p>
               <ul className="space-y-4 text-gray-700 leading-relaxed">
                 <li className="flex items-start">
@@ -153,16 +187,54 @@ const Training = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Enrollment Form Section */}
       <section className="py-16 bg-[#2F3E2E] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Start Your Learning Journey Today</h2>
-          <a 
-            href="/contact" 
-            className="inline-block bg-[#FD6F2F] text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition"
-          >
-            Enroll Now
-          </a>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-6 text-center">Enroll in a Training Program</h2>
+          <form onSubmit={handleSubmit} className="bg-white text-gray-800 p-6 sm:p-8 rounded-xl space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">Full Name *</label>
+              <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Email Address *</label>
+              <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Phone Number</label>
+              <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Select Program *</label>
+              <select required value={formData.program} onChange={(e) => setFormData({...formData, program: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none">
+                <option value="">Choose a program</option>
+                <option value="Software Development">Software Development</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+                <option value="Data Science & AI">Data Science & AI</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="Database Management">Database Management</option>
+                <option value="Mobile Development">Mobile Development</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Experience Level *</label>
+              <select required value={formData.experience} onChange={(e) => setFormData({...formData, experience: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none">
+                <option value="">Select your level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Additional Information</label>
+              <textarea rows={3} value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none resize-none" placeholder="Tell us about your goals and expectations..."></textarea>
+            </div>
+            {status === 'success' && <p className="text-green-600 text-center">Enrollment submitted successfully!</p>}
+            {status === 'error' && <p className="text-red-600 text-center">Failed to submit. Please try again.</p>}
+            <button type="submit" disabled={status === 'sending'} className="w-full bg-[#FD6F2F] text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition disabled:opacity-50">
+              {status === 'sending' ? 'Submitting...' : 'Enroll Now'}
+            </button>
+          </form>
         </div>
       </section>
     </div>

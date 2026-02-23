@@ -1,4 +1,37 @@
+import { useState } from 'react'
+
 const ReferAndEarn = () => {
+  const [formData, setFormData] = useState({ referrerName: '', referrerEmail: '', referrerPhone: '', refereeName: '', refereeEmail: '', refereePhone: '' })
+  const [status, setStatus] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('sending')
+    
+    try {
+      const response = await fetch('http://localhost:5282/api/contact/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.referrerName,
+          email: formData.referrerEmail,
+          phone: formData.referrerPhone,
+          subject: 'Referral Submission',
+          message: `REFERRAL DETAILS:\n\nReferrer: ${formData.referrerName}\nReferrer Email: ${formData.referrerEmail}\nReferrer Phone: ${formData.referrerPhone}\n\nCandidate: ${formData.refereeName}\nCandidate Email: ${formData.refereeEmail}\nCandidate Phone: ${formData.refereePhone}`
+        })
+      })
+      
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ referrerName: '', referrerEmail: '', referrerPhone: '', refereeName: '', refereeEmail: '', refereePhone: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      setStatus('error')
+    }
+  }
+
   return (
     <div>
       {/* Hero Section */}
@@ -15,7 +48,7 @@ const ReferAndEarn = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#2F3E2E] mb-4">Turn Your Network Into Rewards</h2>
             <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Know someone looking for their next career opportunity? Refer them to NetBounce Placement and earn rewards when they get placed!
+              Know someone looking for their next career opportunity? Refer them to UP LIFT PLACEMENTS and earn rewards when they get placed!
             </p>
           </div>
 
@@ -71,7 +104,7 @@ const ReferAndEarn = () => {
           <h3 className="text-2xl font-bold text-[#2F3E2E] mb-8 text-center">Program Benefits</h3>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-lg text-center">
-              <div className="text-5xl mb-4">💰</div>
+              <div className="text-5xl mb-4">💵</div>
               <h4 className="text-xl font-bold text-[#2F3E2E] mb-3">Attractive Rewards</h4>
               <p className="text-gray-700">Earn competitive referral bonuses for every successful placement</p>
             </div>
@@ -167,24 +200,62 @@ const ReferAndEarn = () => {
               </li>
               <li className="flex items-start">
                 <span className="text-[#FD6F2F] mr-2">•</span>
-                <span>NetBounce Placement reserves the right to modify program terms at any time</span>
+                <span>UP LIFT PLACEMENTS reserves the right to modify program terms at any time</span>
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section with Form */}
       <section className="py-16 bg-[#2F3E2E] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Referring?</h2>
-          <p className="text-lg mb-8 opacity-90">Submit your first referral today and start earning rewards!</p>
-          <a 
-            href="/contact" 
-            className="inline-block bg-[#FD6F2F] text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition"
-          >
-            Submit a Referral
-          </a>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-4 text-center">Submit Your Referral</h2>
+          <p className="text-lg mb-8 opacity-90 text-center">Fill out the form below to refer a candidate</p>
+          
+          <form onSubmit={handleSubmit} className="bg-white text-gray-800 p-6 sm:p-8 rounded-xl space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h3 className="font-bold text-[#2F3E2E] mb-4">Your Information</h3>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Your Name *</label>
+                    <input type="text" required value={formData.referrerName} onChange={(e) => setFormData({...formData, referrerName: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Your Email *</label>
+                    <input type="email" required value={formData.referrerEmail} onChange={(e) => setFormData({...formData, referrerEmail: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Your Phone</label>
+                    <input type="tel" value={formData.referrerPhone} onChange={(e) => setFormData({...formData, referrerPhone: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-bold text-[#2F3E2E] mb-4">Candidate Information</h3>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Candidate Name *</label>
+                    <input type="text" required value={formData.refereeName} onChange={(e) => setFormData({...formData, refereeName: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Candidate Email *</label>
+                    <input type="email" required value={formData.refereeEmail} onChange={(e) => setFormData({...formData, refereeEmail: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Candidate Phone</label>
+                    <input type="tel" value={formData.refereePhone} onChange={(e) => setFormData({...formData, refereePhone: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:border-[#FD6F2F] focus:outline-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {status === 'success' && <p className="text-green-600 text-center">Referral submitted successfully!</p>}
+            {status === 'error' && <p className="text-red-600 text-center">Failed to submit. Please try again.</p>}
+            <button type="submit" disabled={status === 'sending'} className="w-full bg-[#FD6F2F] text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition disabled:opacity-50">
+              {status === 'sending' ? 'Submitting...' : 'Submit Referral'}
+            </button>
+          </form>
         </div>
       </section>
     </div>

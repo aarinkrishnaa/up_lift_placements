@@ -17,10 +17,10 @@ const ITJobPlacement = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gray-700 leading-relaxed mb-8">
-            NetBounce Placement specializes in IT job placements, leveraging our industry expertise to connect exceptional candidates with the right opportunities. Our tailored approach ensures a seamless match between candidate skills and employer requirements, fostering successful partnerships that drive business growth. With a commitment to excellence, we navigate the dynamic IT landscape to deliver results that elevate both careers and organizations.
+            UP LIFT PLACEMENTS specializes in IT job placements, leveraging our industry expertise to connect exceptional candidates with the right opportunities. Our tailored approach ensures a seamless match between candidate skills and employer requirements, fostering successful partnerships that drive business growth. With a commitment to excellence, we navigate the dynamic IT landscape to deliver results that elevate both careers and organizations.
           </p>
           
-          <h3 className="text-2xl font-bold text-[#2F3E2E] mb-6">Certainly, here are IT roles in which NetBounce Placement has successfully placed candidates:</h3>
+          <h3 className="text-2xl font-bold text-[#2F3E2E] mb-6">Certainly, here are IT roles in which UP LIFT PLACEMENTS has successfully placed candidates:</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {roles.map((role, i) => (
               <div key={i} className="bg-gradient-to-br from-[#FFEAD1] to-white p-4 rounded-lg text-center font-semibold text-[#2F3E2E]">

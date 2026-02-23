@@ -18,7 +18,7 @@ const RecruitmentProcess = () => {
               <ul className="space-y-4 text-gray-700 leading-relaxed">
                 <li className="flex items-start">
                   <span className="text-[#FD6F2F] mr-2">•</span>
-                  <span>NetBounce Placement is dedicated to crafting optimal job descriptions that swiftly connect you with the right talent.</span>
+                  <span>UP LIFT PLACEMENTS is dedicated to crafting optimal job descriptions that swiftly connect you with the right talent.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-[#FD6F2F] mr-2">•</span>
@@ -26,15 +26,15 @@ const RecruitmentProcess = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="text-[#FD6F2F] mr-2">•</span>
-                  <span>NetBounce's talent pool spans diverse levels and sectors. This enables our adept full-service recruiters to pinpoint and engage the market's most promising candidates, ensuring a perfect fit for your needs.</span>
+                  <span>UP LIFT PLACEMENTS's talent pool spans diverse levels and sectors. This enables our adept full-service recruiters to pinpoint and engage the market's most promising candidates, ensuring a perfect fit for your needs.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-[#FD6F2F] mr-2">•</span>
-                  <span>With a commitment to swift action, NetBounce aims to present a selection of top-quality candidates within the first 48-72 hours of receiving your open criteria.</span>
+                  <span>With a commitment to swift action, UP LIFT PLACEMENTS aims to present a selection of top-quality candidates within the first 48-72 hours of receiving your open criteria.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-[#FD6F2F] mr-2">•</span>
-                  <span>Once the criteria are set, our recruitment experts at NetBounce dive into meticulous screening and interviews, aligning with your expectations to unearth exceptional candidates.</span>
+                  <span>Once the criteria are set, our recruitment experts at UP LIFT PLACEMENTS dive into meticulous screening and interviews, aligning with your expectations to unearth exceptional candidates.</span>
                 </li>
               </ul>
             </div>
@@ -57,15 +57,15 @@ const RecruitmentProcess = () => {
           <ul className="space-y-4 text-gray-700 leading-relaxed">
             <li className="flex items-start">
               <span className="text-[#FD6F2F] mr-2">•</span>
-              <span>NetBounce Placement is committed to equip the clients with comprehensive insights, offering CVs, resumes, and relevant data to ensure a thorough evaluation. Our interview procedure takes on a holistic approach. Recruiters expertly schedule interviews, prepare candidates, and confirm their attendance, ensuring a smooth experience.</span>
+              <span>UP LIFT PLACEMENTS is committed to equip the clients with comprehensive insights, offering CVs, resumes, and relevant data to ensure a thorough evaluation. Our interview procedure takes on a holistic approach. Recruiters expertly schedule interviews, prepare candidates, and confirm their attendance, ensuring a smooth experience.</span>
             </li>
             <li className="flex items-start">
               <span className="text-[#FD6F2F] mr-2">•</span>
-              <span>Once interviews conclude, NetBounce's recruiting team maintains a proactive role, guiding the process until the position is filled. We understand the value of streamlining this journey, allowing our clients to focus on their core business operations.</span>
+              <span>Once interviews conclude, UP LIFT PLACEMENTS's recruiting team maintains a proactive role, guiding the process until the position is filled. We understand the value of streamlining this journey, allowing our clients to focus on their core business operations.</span>
             </li>
             <li className="flex items-start">
               <span className="text-[#FD6F2F] mr-2">•</span>
-              <span>For added convenience, NetBounce extends background check packages upon request. Our comprehensive offerings, including Reference Checks, E-Verify, California Board of License Verification, and Universal Background Screening, empower our clients to make informed choices.</span>
+              <span>For added convenience, UP LIFT PLACEMENTS extends background check packages upon request. Our comprehensive offerings, including Reference Checks, E-Verify, California Board of License Verification, and Universal Background Screening, empower our clients to make informed choices.</span>
             </li>
           </ul>
         </div>
