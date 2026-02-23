@@ -25,7 +25,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         }
         
         if (connectionString.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connectionString.Contains("postgres", StringComparison.OrdinalIgnoreCase))
-            options.UseNpgsql(connectionString);
+            options.UseNpgsql(connectionString)
+                .ConfigureWarnings(warnings => warnings.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
         else
             options.UseSqlServer(connectionString);
     }
