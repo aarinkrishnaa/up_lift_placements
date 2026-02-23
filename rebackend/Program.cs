@@ -13,10 +13,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    if (connectionString.Contains("postgres", StringComparison.OrdinalIgnoreCase))
+    Console.WriteLine($"Connection String: {connectionString ?? "NULL"}");
+    
+    if (!string.IsNullOrEmpty(connectionString) && connectionString.Contains("postgres", StringComparison.OrdinalIgnoreCase))
         options.UseNpgsql(connectionString);
-    else
+    else if (!string.IsNullOrEmpty(connectionString))
         options.UseSqlServer(connectionString);
+    else
+        throw new Exception("Connection string is null or empty!");
 });
 
 builder.Services.AddScoped<IContactService, ContactService>();
