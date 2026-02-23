@@ -15,10 +15,20 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     Console.WriteLine($"Connection String: {connectionString ?? "NULL"}");
     
-    if (!string.IsNullOrEmpty(connectionString) && connectionString.Contains("postgres", StringComparison.OrdinalIgnoreCase))
-        options.UseNpgsql(connectionString);
-    else if (!string.IsNullOrEmpty(connectionString))
-        options.UseSqlServer(connectionString);
+    if (!string.IsNullOrEmpty(connectionString))
+    {
+        // Convert postgresql:// URL to Npgsql format if needed
+        if (connectionString.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
+        {
+            var uri = new Uri(connectionString);
+            connectionString = $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};Username={uri.UserInfo.Split(':')[0]};Password={uri.UserInfo.Split(':')[1]};SSL Mode=Require;Trust Server Certificate=true";
+        }
+        
+        if (connectionString.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connectionString.Contains("postgres", StringComparison.OrdinalIgnoreCase))
+            options.UseNpgsql(connectionString);
+        else
+            options.UseSqlServer(connectionString);
+    }
     else
         throw new Exception("Connection string is null or empty!");
 });
