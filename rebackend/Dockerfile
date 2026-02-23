@@ -7,6 +7,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview
 WORKDIR /app
 COPY --from=build /app/out .
 
-ENV ASPNETCORE_URLS=http://+:10000
+EXPOSE 10000
+ENV ASPNETCORE_URLS=http://0.0.0.0:10000
 
 ENTRYPOINT ["dotnet", "rebackend.dll"]

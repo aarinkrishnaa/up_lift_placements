@@ -45,8 +45,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Get port from environment variable (Railway sets PORT)
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5282";
+// Get port from environment variable (Render sets PORT)
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
 if (app.Environment.IsDevelopment())
@@ -55,7 +55,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// Remove HTTPS redirection for Render deployment
+// app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
