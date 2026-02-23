@@ -12,8 +12,8 @@ using rebackend.Data;
 namespace rebackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260223095834_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260223152821_InitialPostgreSQL")]
+    partial class InitialPostgreSQL
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
