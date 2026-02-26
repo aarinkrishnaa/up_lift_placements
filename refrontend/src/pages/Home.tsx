@@ -66,18 +66,18 @@ const Home = () => {
     }, stepTime)
   }
   const services = [
-    { icon: <Laptop className="w-16 h-16" />, title: 'IT JOB PLACEMENT' },
-    { icon: <GraduationCap className="w-16 h-16" />, title: 'CAREER GUIDANCE' },
-    { icon: <Headphones className="w-16 h-16" />, title: 'INTERVIEW SUPPORT' },
-    { icon: <BookOpen className="w-16 h-16" />, title: 'TRAINING' },
-    { icon: <Users className="w-16 h-16" />, title: 'STAFFING' },
-    { icon: <GraduationCap className="w-16 h-16" />, title: 'RECRUITMENT & INTERVIEW PROCESS' }
+    { icon: <Laptop className="w-16 h-16" />, title: 'IT JOB PLACEMENT', link: '/it-job-placement' },
+    { icon: <GraduationCap className="w-16 h-16" />, title: 'CAREER GUIDANCE', link: '/career-guidance' },
+    { icon: <Headphones className="w-16 h-16" />, title: 'INTERVIEW SUPPORT', link: '/interview-support' },
+    { icon: <BookOpen className="w-16 h-16" />, title: 'TRAINING', link: '/training' },
+    { icon: <Users className="w-16 h-16" />, title: 'STAFFING', link: '/staffing' },
+    { icon: <GraduationCap className="w-16 h-16" />, title: 'RECRUITMENT & INTERVIEW PROCESS', link: '/recruitment-interview-process' }
   ]
 
   const whyChooseUs = [
-    { icon: <Users className="w-16 h-16" />, title: 'Staffing', desc: 'UP LIFT PLACEMENTS excels in IT recruitment and staffing services for finance, healthcare, and technology sectors.' },
-    { icon: <GraduationCap className="w-16 h-16" />, title: 'Career Guidance', desc: 'Discover your professional compass with UP LIFT PLACEMENTS. Our career guidance offers insights, trends, and tailored advice.' },
-    { icon: <Users className="w-16 h-16" />, title: 'Job Guarantee', desc: 'UP LIFT PLACEMENTS stands out by offering job guarantee plans, providing job seekers with the confidence they need.' }
+    { icon: <Users className="w-16 h-16" />, title: 'Expert Staffing Solutions', desc: 'We excel in connecting top IT talent with leading companies across finance, healthcare, and technology sectors nationwide.' },
+    { icon: <GraduationCap className="w-16 h-16" />, title: 'Personalized Career Guidance', desc: 'Navigate your career path with confidence through our expert insights, industry trends analysis, and customized professional advice.' },
+    { icon: <Laptop className="w-16 h-16" />, title: 'Proven Success Record', desc: 'With 870+ successful placements and a 97.8% success rate, we deliver results that transform careers and build lasting partnerships.' }
   ]
 
   const companies = [
@@ -86,11 +86,11 @@ const Home = () => {
   ]
 
   const testimonials = [
-    { name: 'Rajesh Kumar', role: 'Senior Software Engineer', content: 'UP LIFT PLACEMENTS team has been exceptional in understanding my career goals. Their professional approach and constant support made my job search journey smooth and successful.', img: 'Enock-Brookins.png' },
-    { name: 'Priya Sharma', role: 'Business Analyst', content: 'The team at UP LIFT PLACEMENTS exceeded my expectations. They were responsive, professional, and helped me land my dream job. Highly recommend their services!', img: 'Priya-Patel.png' },
-    { name: 'Amit Patel', role: 'Project Manager', content: 'Working with UP LIFT PLACEMENTS was a game-changer for my career. Their expertise and dedication in finding the right opportunity for me was truly impressive.', img: 'Vaidehi-Shah.png' },
-    { name: 'Sneha Reddy', role: 'Data Scientist', content: 'I am grateful to UP LIFT PLACEMENTS for their excellent guidance and support. They understood my requirements perfectly and connected me with the right opportunities.', img: 'Enock-Brookins.png' },
-    { name: 'Vikram Singh', role: 'DevOps Engineer', content: 'The professionalism and commitment shown by UP LIFT PLACEMENTS team is commendable. They made the entire placement process seamless and stress-free.', img: 'Priya-Patel.png' }
+    { name: 'Rajesh Kumar', role: 'Senior Software Engineer', content: 'UP LIFT PLACEMENTS team has been exceptional in understanding my career goals. Their professional approach and constant support made my job search journey smooth and successful.', img: 'Enock-Brookins.png', gender: 'male' },
+    { name: 'Priya Sharma', role: 'Business Analyst', content: 'The team at UP LIFT PLACEMENTS exceeded my expectations. They were responsive, professional, and helped me land my dream job. Highly recommend their services!', img: 'Priya-Patel.png', gender: 'female' },
+    { name: 'Amit Patel', role: 'Project Manager', content: 'Working with UP LIFT PLACEMENTS was a game-changer for my career. Their expertise and dedication in finding the right opportunity for me was truly impressive.', img: 'Enock-Brookins.png', gender: 'male' },
+    { name: 'Sneha Reddy', role: 'Data Scientist', content: 'I am grateful to UP LIFT PLACEMENTS for their excellent guidance and support. They understood my requirements perfectly and connected me with the right opportunities.', img: 'Priya-Patel.png', gender: 'female' },
+    { name: 'Vikram Singh', role: 'DevOps Engineer', content: 'The professionalism and commitment shown by UP LIFT PLACEMENTS team is commendable. They made the entire placement process seamless and stress-free.', img: 'Enock-Brookins.png', gender: 'male' }
   ]
 
   return (
@@ -148,10 +148,12 @@ const Home = () => {
             </motion.div>
             <div className="grid grid-cols-2 gap-4 md:gap-6">
               {services.map((service, index) => (
-                <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-gradient-to-br from-[#FFEAD1] to-white p-4 md:p-6 rounded-xl md:rounded-2xl text-center hover:shadow-xl transition">
-                  <div className="text-[#FD6F2F] mb-3 md:mb-4 flex justify-center scale-75 md:scale-100">{service.icon}</div>
-                  <h3 className="font-bold text-[#2F3E2E] text-[10px] md:text-xs leading-tight">{service.title}</h3>
-                </motion.div>
+                <Link key={index} to={service.link}>
+                  <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-gradient-to-br from-[#FFEAD1] to-white p-4 md:p-6 rounded-xl md:rounded-2xl text-center hover:shadow-xl transition cursor-pointer">
+                    <div className="text-[#FD6F2F] mb-3 md:mb-4 flex justify-center scale-75 md:scale-100">{service.icon}</div>
+                    <h3 className="font-bold text-[#2F3E2E] text-[10px] md:text-xs leading-tight">{service.title}</h3>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>
@@ -166,7 +168,7 @@ const Home = () => {
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 md:mb-16">
-              <p className="text-base md:text-lg mb-2">Give your Job Seekness to UP LIFT PLACEMENTS</p>
+              <p className="text-base md:text-lg mb-2">Trust Your Career Journey to UP LIFT PLACEMENTS</p>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Why Choose Us?</h2>
             </motion.div>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -244,7 +246,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#2F3E2E] mb-12">Candidates Placed in</h2>
           <div className="relative">
-            <div className="flex animate-scroll">
+            <div className="flex animate-scroll-fast">
               {[...companies, ...companies].map((company, i) => (
                 <img key={i} src={`/images/${company}`} alt="Company" className="h-20 mx-8 transition flex-shrink-0" loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} />
               ))}
@@ -300,7 +302,7 @@ const Home = () => {
                 <div key={index} className="w-full flex-shrink-0 px-4">
                   <div className="bg-white p-6 rounded-xl shadow-lg max-w-xl mx-auto">
                     <div className="flex items-center gap-3 mb-3">
-                      <img src={`/images/${testimonial.img}`} alt={testimonial.name} className="w-12 h-12 rounded-full" loading="lazy" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=' + testimonial.name }} />
+                      <img src={`/images/${testimonial.img}`} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" loading="lazy" onError={(e) => { e.currentTarget.src = `https://ui-avatars.com/api/?name=${testimonial.name}&background=${testimonial.gender === 'male' ? '2F3E2E' : 'FD6F2F'}&color=fff` }} />
                       <div>
                         <div className="font-bold text-[#2F3E2E] text-sm">{testimonial.name}</div>
                         <div className="text-xs text-gray-600">{testimonial.role}</div>
