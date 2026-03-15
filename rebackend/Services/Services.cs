@@ -25,7 +25,7 @@ public class ContactService : IContactService
         _ = Task.Run(async () =>
         {
             try { await _emailService.SendContactEmailAsync(contact.Name, contact.Email, contact.Phone ?? "Not provided", contact.Subject, contact.Message); }
-            catch { }
+            catch (Exception ex) { Console.WriteLine($"EMAIL ERROR: {ex.Message}"); }
         });
         
         return contact;
