@@ -22,10 +22,10 @@ public class EmailService : IEmailService
 
     private SmtpClient CreateClient()
     {
-        return new SmtpClient(_config["EmailSettings:SmtpServer"], int.Parse(_config["EmailSettings:SmtpPort"]))
+        return new SmtpClient(_config["EmailSettings:SmtpServer"], 465)
         {
             EnableSsl = true,
-            Timeout = 10000,
+            Timeout = 15000,
             Credentials = new NetworkCredential(_config["EmailSettings:SenderEmail"], _config["EmailSettings:SenderPassword"])
         };
     }
