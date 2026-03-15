@@ -58,7 +58,8 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             "http://localhost:5173", 
             "http://localhost:5174",
-            "https://upliftplacements.netlify.app"
+            "https://upliftplacements.netlify.app",
+            "https://cooldeep.vercel.app"
         )
               .AllowAnyMethod()
               .AllowAnyHeader()
