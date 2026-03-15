@@ -65,6 +65,7 @@ public class JobController : ControllerBase
     public JobController(IJobService service) => _service = service;
 
     [HttpGet("listings")]
+    [HttpHead("listings")]
     public async Task<IActionResult> GetListings() => Ok(await _service.GetActiveJobsAsync());
 
     [HttpGet("{id}")]
