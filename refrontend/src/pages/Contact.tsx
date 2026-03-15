@@ -9,11 +9,17 @@ const Contact = () => {
     setStatus('sending')
     
     try {
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 60000)
+      
       const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://up-lift-placements.onrender.com'}/api/contact/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        signal: controller.signal
       })
+      
+      clearTimeout(timeout)
       
       if (response.ok) {
         setStatus('success')
@@ -94,8 +100,9 @@ const Contact = () => {
                 </div>
                 {status === 'success' && <p className="text-green-600 text-sm">Message sent successfully!</p>}
                 {status === 'error' && <p className="text-red-600 text-sm">Failed to send. Please try again.</p>}
+                {status === 'sending' && <p className="text-gray-500 text-xs">Please wait up to 60 seconds on first request...</p>}
                 <button type="submit" disabled={status === 'sending'} className="w-full bg-[#FD6F2F] text-white py-2 sm:py-3 text-sm sm:text-base rounded-lg hover:bg-opacity-90 transition font-semibold disabled:opacity-50">
-                  {status === 'sending' ? 'Sending...' : 'Send Message'}
+                  {status === 'sending' ? 'Sending... (please wait)' : 'Send Message'}
                 </button>
               </form>
             </div>
