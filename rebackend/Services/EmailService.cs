@@ -22,7 +22,7 @@ public class EmailService : IEmailService
 
     private SendGridClient CreateClient()
     {
-        var key = _config["EmailSettings:SendGridApiKey"] ?? Environment.GetEnvironmentVariable("EmailSettings__SendGridApiKey");
+        var key = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
         Console.WriteLine($"SendGrid Key present: {!string.IsNullOrEmpty(key)}");
         return new SendGridClient(key);
     }
