@@ -1,5 +1,5 @@
-using System.Net;
-using System.Net.Mail;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using Microsoft.Extensions.Configuration;
 
 namespace rebackend.Services;
@@ -20,67 +20,50 @@ public class EmailService : IEmailService
         _config = config;
     }
 
-    private SmtpClient CreateClient()
-    {
-        return new SmtpClient(_config["EmailSettings:SmtpServer"], 465)
-        {
-            EnableSsl = true,
-            Timeout = 15000,
-            Credentials = new NetworkCredential(_config["EmailSettings:SenderEmail"], _config["EmailSettings:SenderPassword"])
-        };
-    }
+    private SendGridClient CreateClient() =>
+        new SendGridClient(_config["EmailSettings:SendGridApiKey"]);
+
+    private EmailAddress Sender() =>
+        new EmailAddress(_config["EmailSettings:SenderEmail"], "UP LIFT PLACEMENTS");
+
+    private EmailAddress Receiver() =>
+        new EmailAddress(_config["EmailSettings:ReceiverEmail"]);
 
     public async Task SendContactEmailAsync(string name, string email, string phone, string subject, string message)
     {
-        var senderEmail = _config["EmailSettings:SenderEmail"];
-        var receiverEmail = _config["EmailSettings:ReceiverEmail"];
-
-        using var client = CreateClient();
-        var mailMessage = new MailMessage
+        var msg = MailHelper.CreateSingleEmail(
+            Sender(), Receiver(),
+            $"Contact Form: {subject}",
+            $"Name: {name}\nEmail: {email}\nPhone: {phone}\nSubject: {subject}\n\nMessage:\n{message}",
+            null);
+        msg.ReplyTo = new EmailAddress(email, name);
+        var response = await CreateClient().SendEmailAsync(msg);
+        if (!response.IsSuccessStatusCode)
         {
-            From = new MailAddress(senderEmail, "UP LIFT PLACEMENTS Contact Form"),
-            Subject = $"Contact Form: {subject}",
-            Body = $"New Contact Form Submission\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nSubject: {subject}\n\nMessage:\n{message}",
-            IsBodyHtml = false
-        };
-        mailMessage.To.Add(receiverEmail);
-        mailMessage.ReplyToList.Add(new MailAddress(email, name));
-        await client.SendMailAsync(mailMessage);
+            var body = await response.Body.ReadAsStringAsync();
+            Console.WriteLine($"EMAIL ERROR: {response.StatusCode} - {body}");
+        }
     }
 
     public async Task SendReferralEmailAsync(string referrerName, string referrerEmail, string referrerPhone, string refereeName, string refereeEmail, string refereePhone, string refereeResume)
     {
-        var senderEmail = _config["EmailSettings:SenderEmail"];
-        var receiverEmail = _config["EmailSettings:ReceiverEmail"];
-
-        using var client = CreateClient();
-        var mailMessage = new MailMessage
-        {
-            From = new MailAddress(senderEmail, "UP LIFT PLACEMENTS Referral"),
-            Subject = "New Referral Submission",
-            Body = $"New Referral Submission\n\nReferrer: {referrerName} | {referrerEmail} | {referrerPhone}\nReferee: {refereeName} | {refereeEmail} | {refereePhone}",
-            IsBodyHtml = false
-        };
-        mailMessage.To.Add(receiverEmail);
-        mailMessage.ReplyToList.Add(new MailAddress(referrerEmail, referrerName));
-        await client.SendMailAsync(mailMessage);
+        var msg = MailHelper.CreateSingleEmail(
+            Sender(), Receiver(),
+            "New Referral Submission",
+            $"Referrer: {referrerName} | {referrerEmail} | {referrerPhone}\nReferee: {refereeName} | {refereeEmail} | {refereePhone}",
+            null);
+        msg.ReplyTo = new EmailAddress(referrerEmail, referrerName);
+        await CreateClient().SendEmailAsync(msg);
     }
 
     public async Task SendTrainingEnrollmentEmailAsync(string name, string email, string phone, string program, string experience, string message)
     {
-        var senderEmail = _config["EmailSettings:SenderEmail"];
-        var receiverEmail = _config["EmailSettings:ReceiverEmail"];
-
-        using var client = CreateClient();
-        var mailMessage = new MailMessage
-        {
-            From = new MailAddress(senderEmail, "UP LIFT PLACEMENTS Training"),
-            Subject = $"Training Enrollment: {program}",
-            Body = $"New Training Enrollment\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nProgram: {program}\nExperience: {experience}\n\n{message}",
-            IsBodyHtml = false
-        };
-        mailMessage.To.Add(receiverEmail);
-        mailMessage.ReplyToList.Add(new MailAddress(email, name));
-        await client.SendMailAsync(mailMessage);
+        var msg = MailHelper.CreateSingleEmail(
+            Sender(), Receiver(),
+            $"Training Enrollment: {program}",
+            $"Name: {name}\nEmail: {email}\nPhone: {phone}\nProgram: {program}\nExperience: {experience}\n\n{message}",
+            null);
+        msg.ReplyTo = new EmailAddress(email, name);
+        await CreateClient().SendEmailAsync(msg);
     }
 }
