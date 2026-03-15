@@ -55,11 +55,10 @@ builder.Services.AddScoped<IRecruitmentService, RecruitmentService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
-        policy.WithOrigins(
-            "http://localhost:5173", 
-            "http://localhost:5174",
-            "https://upliftplacements.netlify.app",
-            "https://cooldeep.vercel.app"
+        policy.SetIsOriginAllowed(origin =>
+            origin.StartsWith("http://localhost") ||
+            origin.EndsWith(".netlify.app") ||
+            origin.EndsWith(".vercel.app")
         )
               .AllowAnyMethod()
               .AllowAnyHeader()
