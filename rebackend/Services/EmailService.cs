@@ -20,8 +20,12 @@ public class EmailService : IEmailService
         _config = config;
     }
 
-    private SendGridClient CreateClient() =>
-        new SendGridClient(_config["EmailSettings:SendGridApiKey"]);
+    private SendGridClient CreateClient()
+    {
+        var key = _config["EmailSettings:SendGridApiKey"] ?? Environment.GetEnvironmentVariable("EmailSettings__SendGridApiKey");
+        Console.WriteLine($"SendGrid Key present: {!string.IsNullOrEmpty(key)}");
+        return new SendGridClient(key);
+    }
 
     private EmailAddress Sender() =>
         new EmailAddress(_config["EmailSettings:SenderEmail"], "UP LIFT PLACEMENTS");
