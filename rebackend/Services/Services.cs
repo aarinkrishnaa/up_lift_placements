@@ -22,21 +22,11 @@ public class ContactService : IContactService
         _db.Contacts.Add(contact);
         await _db.SaveChangesAsync();
         
-        // Send email notification
-        try
+        _ = Task.Run(async () =>
         {
-            await _emailService.SendContactEmailAsync(
-                contact.Name,
-                contact.Email,
-                contact.Phone ?? "Not provided",
-                contact.Subject,
-                contact.Message
-            );
-        }
-        catch (Exception)
-        {
-            // Log error but don't fail the request
-        }
+            try { await _emailService.SendContactEmailAsync(contact.Name, contact.Email, contact.Phone ?? "Not provided", contact.Subject, contact.Message); }
+            catch { }
+        });
         
         return contact;
     }
