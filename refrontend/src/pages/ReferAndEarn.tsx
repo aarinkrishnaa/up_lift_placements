@@ -10,6 +10,10 @@ const ReferAndEarn = () => {
     
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://up-lift-placements.onrender.com'}/api/contact/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.referrerName,
           email: formData.referrerEmail,
           phone: formData.referrerPhone,
           subject: 'Referral Submission',
