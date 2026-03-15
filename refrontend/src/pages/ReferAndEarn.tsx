@@ -9,11 +9,7 @@ const ReferAndEarn = () => {
     setStatus('sending')
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5282'}/api/contact/submit`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.referrerName,
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://up-lift-placements.onrender.com'}/api/contact/submit`, {
           email: formData.referrerEmail,
           phone: formData.referrerPhone,
           subject: 'Referral Submission',

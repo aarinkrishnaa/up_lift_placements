@@ -9,7 +9,7 @@ const Contact = () => {
     setStatus('sending')
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5282'}/api/contact/submit`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://up-lift-placements.onrender.com'}/api/contact/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -76,7 +76,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Phone Number</label>
-                  <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:border-[#FD6F2F] focus:outline-none" placeholder="+1 (234) 567-890" />
+                  <input type="tel" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:border-[#FD6F2F] focus:outline-none" placeholder="+91 99999 99999 or +1 (234) 567-890" />
                 </div>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Subject *</label>
