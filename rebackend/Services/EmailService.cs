@@ -25,6 +25,7 @@ public class EmailService : IEmailService
         return new SmtpClient(_config["EmailSettings:SmtpServer"], int.Parse(_config["EmailSettings:SmtpPort"]))
         {
             EnableSsl = true,
+            Timeout = 10000,
             Credentials = new NetworkCredential(_config["EmailSettings:SenderEmail"], _config["EmailSettings:SenderPassword"])
         };
     }
