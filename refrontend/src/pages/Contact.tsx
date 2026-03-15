@@ -10,7 +10,7 @@ const Contact = () => {
     
     try {
       const controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), 120000)
+      const timeout = setTimeout(() => controller.abort(), 30000)
       
       const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://up-lift-placements.onrender.com'}/api/contact/submit`, {
         method: 'POST',
@@ -100,7 +100,7 @@ const Contact = () => {
                 </div>
                 {status === 'success' && <p className="text-green-600 text-sm">Message sent successfully!</p>}
                 {status === 'error' && <p className="text-red-600 text-sm">Failed to send. Please try again.</p>}
-                {status === 'sending' && <p className="text-orange-500 text-xs">⏳ Server is waking up, please wait up to 2 minutes...</p>}
+                {status === 'sending' && <p className="text-orange-500 text-xs">⏳ Sending your message...</p>}
                 <button type="submit" disabled={status === 'sending'} className="w-full bg-[#FD6F2F] text-white py-2 sm:py-3 text-sm sm:text-base rounded-lg hover:bg-opacity-90 transition font-semibold disabled:opacity-50">
                   {status === 'sending' ? 'Sending... (please wait)' : 'Send Message'}
                 </button>

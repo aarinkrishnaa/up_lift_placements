@@ -20,124 +20,66 @@ public class EmailService : IEmailService
         _config = config;
     }
 
-    public async Task SendContactEmailAsync(string name, string email, string phone, string subject, string message)
+    private SmtpClient CreateClient()
     {
-        var smtpServer = _config["EmailSettings:SmtpServer"];
-        var smtpPort = int.Parse(_config["EmailSettings:SmtpPort"]);
-        var senderEmail = _config["EmailSettings:SenderEmail"];
-        var receiverEmail = _config["EmailSettings:ReceiverEmail"];
-        var senderPassword = _config["EmailSettings:SenderPassword"];
-
-        using var client = new SmtpClient(smtpServer, smtpPort)
+        return new SmtpClient(_config["EmailSettings:SmtpServer"], int.Parse(_config["EmailSettings:SmtpPort"]))
         {
             EnableSsl = true,
-            Credentials = new NetworkCredential(receiverEmail, senderPassword)
+            Credentials = new NetworkCredential(_config["EmailSettings:SenderEmail"], _config["EmailSettings:SenderPassword"])
         };
+    }
 
+    public async Task SendContactEmailAsync(string name, string email, string phone, string subject, string message)
+    {
+        var senderEmail = _config["EmailSettings:SenderEmail"];
+        var receiverEmail = _config["EmailSettings:ReceiverEmail"];
+
+        using var client = CreateClient();
         var mailMessage = new MailMessage
         {
-            From = new MailAddress(receiverEmail, "UP LIFT PLACEMENTS Contact Form"),
+            From = new MailAddress(senderEmail, "UP LIFT PLACEMENTS Contact Form"),
             Subject = $"Contact Form: {subject}",
-            Body = $@"
-New Contact Form Submission
-
-Name: {name}
-Email: {email}
-Phone: {phone}
-Subject: {subject}
-
-Message:
-{message}
-
----
-This email was sent from the UP LIFT PLACEMENTS contact form.
-",
+            Body = $"New Contact Form Submission\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nSubject: {subject}\n\nMessage:\n{message}",
             IsBodyHtml = false
         };
-
         mailMessage.To.Add(receiverEmail);
         mailMessage.ReplyToList.Add(new MailAddress(email, name));
-
         await client.SendMailAsync(mailMessage);
     }
 
     public async Task SendReferralEmailAsync(string referrerName, string referrerEmail, string referrerPhone, string refereeName, string refereeEmail, string refereePhone, string refereeResume)
     {
+        var senderEmail = _config["EmailSettings:SenderEmail"];
         var receiverEmail = _config["EmailSettings:ReceiverEmail"];
-        var senderPassword = _config["EmailSettings:SenderPassword"];
 
-        using var client = new SmtpClient(_config["EmailSettings:SmtpServer"], int.Parse(_config["EmailSettings:SmtpPort"]))
-        {
-            EnableSsl = true,
-            Credentials = new NetworkCredential(receiverEmail, senderPassword)
-        };
-
+        using var client = CreateClient();
         var mailMessage = new MailMessage
         {
-            From = new MailAddress(receiverEmail, "UP LIFT PLACEMENTS Referral"),
+            From = new MailAddress(senderEmail, "UP LIFT PLACEMENTS Referral"),
             Subject = "New Referral Submission",
-            Body = $@"
-New Referral Submission
-
-REFERRER DETAILS:
-Name: {referrerName}
-Email: {referrerEmail}
-Phone: {referrerPhone}
-
-REFEREE DETAILS:
-Name: {refereeName}
-Email: {refereeEmail}
-Phone: {refereePhone}
-Resume/LinkedIn: {refereeResume}
-
----
-This email was sent from the UP LIFT PLACEMENTS Refer and Earn page.
-",
+            Body = $"New Referral Submission\n\nReferrer: {referrerName} | {referrerEmail} | {referrerPhone}\nReferee: {refereeName} | {refereeEmail} | {refereePhone}",
             IsBodyHtml = false
         };
-
         mailMessage.To.Add(receiverEmail);
         mailMessage.ReplyToList.Add(new MailAddress(referrerEmail, referrerName));
-
         await client.SendMailAsync(mailMessage);
     }
 
     public async Task SendTrainingEnrollmentEmailAsync(string name, string email, string phone, string program, string experience, string message)
     {
+        var senderEmail = _config["EmailSettings:SenderEmail"];
         var receiverEmail = _config["EmailSettings:ReceiverEmail"];
-        var senderPassword = _config["EmailSettings:SenderPassword"];
 
-        using var client = new SmtpClient(_config["EmailSettings:SmtpServer"], int.Parse(_config["EmailSettings:SmtpPort"]))
-        {
-            EnableSsl = true,
-            Credentials = new NetworkCredential(receiverEmail, senderPassword)
-        };
-
+        using var client = CreateClient();
         var mailMessage = new MailMessage
         {
-            From = new MailAddress(receiverEmail, "UP LIFT PLACEMENTS Training"),
+            From = new MailAddress(senderEmail, "UP LIFT PLACEMENTS Training"),
             Subject = $"Training Enrollment: {program}",
-            Body = $@"
-New Training Enrollment
-
-Name: {name}
-Email: {email}
-Phone: {phone}
-Program: {program}
-Experience Level: {experience}
-
-Additional Information:
-{message}
-
----
-This email was sent from the UP LIFT PLACEMENTS Training page.
-",
+            Body = $"New Training Enrollment\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nProgram: {program}\nExperience: {experience}\n\n{message}",
             IsBodyHtml = false
         };
-
         mailMessage.To.Add(receiverEmail);
         mailMessage.ReplyToList.Add(new MailAddress(email, name));
-
         await client.SendMailAsync(mailMessage);
     }
 }
